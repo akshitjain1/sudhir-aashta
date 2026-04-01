@@ -1,0 +1,228 @@
+/* ── Premium Wedding Fonts (must be before tailwind) ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Great+Vibes&family=Cinzel:wght@400;500;600;700&family=Poppins:wght@200;300;400;500&display=swap');
+
+@import "tailwindcss";
+
+/* ── Design Tokens ── */
+@theme {
+  --color-maroon: #3E0404;
+  --color-maroon-dark: #0e0202;
+  --color-maroon-mid: #4A0E0E;
+  --color-maroon-light: #6B1515;
+  --color-gold: #D4AF37;
+  --color-gold-bright: #E8C547;
+  --color-gold-dim: rgba(212, 175, 55, 0.45);
+  --color-gold-glow: rgba(212, 175, 55, 0.12);
+  --color-gold-subtle: rgba(212, 175, 55, 0.06);
+  --color-cream: #FFF8E7;
+  --color-cream-dark: #F5EDD8;
+  --color-text-light: #F5E6C8;
+  --color-text-warm: #E8D4A8;
+  --color-text-dark: #2C0303;
+
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-display: 'Cinzel', serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-body: 'Poppins', sans-serif;
+}
+
+/* ── Base ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-maroon-dark);
+    color: var(--color-text-light);
+    overflow-x: hidden;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--color-maroon-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--color-gold-dim); border-radius: 8px; }
+
+  ::selection {
+    background: rgba(212, 175, 55, 0.3);
+    color: #fff;
+  }
+}
+
+/* ══════════════════════════
+   CURTAIN FABRIC
+   ══════════════════════════ */
+.curtain-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Main curtain background */
+.curtain-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 40% 25%, rgba(130, 22, 22, 0.5) 0%, transparent 45%),
+    radial-gradient(ellipse at 60% 75%, rgba(100, 18, 18, 0.4) 0%, transparent 45%),
+    linear-gradient(180deg, #5a1010 0%, #3a0606 35%, #200303 70%, #120202 100%);
+}
+
+/* Fabric weave texture */
+.curtain-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0px, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 3px),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 6px, rgba(255,255,255,0.012) 6px, rgba(255,255,255,0.012) 7px);
+  pointer-events: none;
+}
+
+/* Curtain fold highlights — gives the draping 3D effect */
+.curtain-fold-1 {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  pointer-events: none;
+}
+
+.curtain-fold-2 {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 20%;
+  background: linear-gradient(90deg, rgba(0,0,0,0.15), transparent, rgba(0,0,0,0.1));
+  pointer-events: none;
+}
+
+.curtain-fold-3 {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 15%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.025), transparent);
+  pointer-events: none;
+}
+
+/* Edge shadow for depth */
+.curtain-edge-shadow-left {
+  position: absolute; right: 0; top: 0; width: 90px; height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.65), transparent);
+  pointer-events: none;
+}
+
+.curtain-edge-shadow-right {
+  position: absolute; left: 0; top: 0; width: 90px; height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.65), transparent);
+  pointer-events: none;
+}
+
+/* Curtain top gather — the bunched fabric at the top */
+.curtain-top-gather {
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 80px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(0,0,0,0.08) 15px,
+      transparent 30px,
+      rgba(255,255,255,0.02) 45px,
+      transparent 60px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ══════════════════════════
+   TIMELINE
+   ══════════════════════════ */
+.timeline-line::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(212,175,55,0.2) 5%, var(--color-gold) 15%, var(--color-gold) 85%, rgba(212,175,55,0.2) 95%, transparent 100%);
+  top: 0; bottom: 0; left: 50%;
+  transform: translateX(-1px);
+}
+
+@media (max-width: 768px) {
+  .timeline-line::after { left: 22px; }
+}
+
+.timeline-dot-inner::after {
+  content: '';
+  position: absolute;
+  width: 7px; height: 7px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ══════════════════════════
+   HERO CORNERS
+   ══════════════════════════ */
+.corner-accent-tl {
+  position: absolute; top: 25px; left: 25px;
+  width: 60px; height: 60px;
+  border-top: 1px solid rgba(212,175,55,0.3);
+  border-left: 1px solid rgba(212,175,55,0.3);
+  pointer-events: none; z-index: 2;
+}
+
+.corner-accent-br {
+  position: absolute; bottom: 25px; right: 25px;
+  width: 60px; height: 60px;
+  border-bottom: 1px solid rgba(212,175,55,0.3);
+  border-right: 1px solid rgba(212,175,55,0.3);
+  pointer-events: none; z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .corner-accent-tl, .corner-accent-br { width: 30px; height: 30px; }
+  .corner-accent-tl { top: 14px; left: 14px; }
+  .corner-accent-br { bottom: 14px; right: 14px; }
+}
+
+/* ══════════════════════════
+   ANIMATIONS
+   ══════════════════════════ */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(212,175,55,0.15), inset 0 0 12px rgba(212,175,55,0.04); }
+  50%      { box-shadow: 0 0 35px rgba(212,175,55,0.35), inset 0 0 20px rgba(212,175,55,0.08); }
+}
+
+.glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+
+@keyframes textGlow {
+  0%, 100% { text-shadow: 0 0 15px rgba(212,175,55,0.2), 0 2px 4px rgba(0,0,0,0.3); }
+  50%      { text-shadow: 0 0 30px rgba(212,175,55,0.35), 0 2px 4px rgba(0,0,0,0.3); }
+}
+
+.text-glow { animation: textGlow 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, var(--color-gold) 0%, #f0d060 25%, var(--color-gold) 50%, #f0d060 75%, var(--color-gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+.section-divider-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-dim), transparent);
+}
